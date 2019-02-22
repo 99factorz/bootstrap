@@ -1152,24 +1152,6 @@ $(function () {
     assert.strictEqual(tooltip.config.template.indexOf('onError'), -1)
   })
 
-  QUnit.test('should sanitize template by removing tags with XSS', function (assert) {
-    assert.expect(1)
-
-    var $trigger = $('<a href="#" rel="tooltip" data-trigger="click" title="Another tooltip"/>')
-      .appendTo('#qunit-fixture')
-      .bootstrapTooltip({
-        template: [
-          '<div>',
-          '  <a href="javascript:alert(7)">Click me</a>',
-          '  <span>Some content</span>',
-          '</div>'
-        ].join('')
-      })
-
-    var tooltip = Tooltip._getInstance($trigger[0])
-    assert.strictEqual(tooltip.config.template.indexOf('script'), -1)
-  })
-
   QUnit.test('should allow custom sanitization rules', function (assert) {
     assert.expect(2)
 
